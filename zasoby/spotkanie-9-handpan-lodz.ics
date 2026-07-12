@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Handpan Lodz//Spotkania//PL
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:spotkanie-9-2026@handpanlodz.pl
+DTSTAMP:20260712T090000Z
+DTSTART;TZID=Europe/Warsaw:20260809T150000
+DTEND;TZID=Europe/Warsaw:20260809T180000
+SUMMARY:Handpan Łódź — 9. spotkanie (letni jam w plenerze)
+DESCRIPTION:Rozgrzewka\, impro\, rozmowy i wspólne granie. Miejscówkę ogłaszamy w grupie. Wstęp wolny\, każdy poziom mile widziany.
+LOCATION:Łódź — plener (miejscówka ogłaszana w grupie)
+URL:https://handpanlodz.pl/#spotkania
+END:VEVENT
+END:VCALENDAR
