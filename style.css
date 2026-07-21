@@ -245,26 +245,13 @@ a:hover{color:var(--miedz)}
 .karta-miejscowki__adres{font-size:.97rem;color:rgba(27,42,71,.78);margin:0}
 .karta-miejscowki__dzielnica{font-family:var(--f-reczna);font-weight:600;font-size:1.06rem;color:var(--petrol)}
 .karta-miejscowki__mapa{margin-top:auto;padding-top:.7rem;font-size:.94rem;font-weight:600}
-.mapa-poglad{
-  margin-top:clamp(2.2rem,5vw,3.4rem);position:relative;border-radius:var(--obrys-reczny);
-  overflow:hidden;box-shadow:var(--cien-karty);border:1.5px solid rgba(27,42,71,.18);
-}
-.mapa-poglad__plotno{position:relative}
-.mapa-poglad img{width:100%;height:auto}
-.mapa-poglad__podpis{
-  position:absolute;left:1rem;bottom:1rem;background:rgba(255,253,246,.9);
-  padding:.4rem .9rem;border-radius:10px;font-size:.9rem;color:rgba(27,42,71,.8);
-}
-.mapa-poglad__pin{position:absolute;transform:translate(-50%,-100%);width:2rem;height:2rem;border-radius:50% 50% 50% 4px;display:grid;place-content:center;color:#fff;font-weight:600;font-family:var(--f-tytul);font-size:.92rem;box-shadow:0 8px 16px -8px rgba(16,28,51,.6);rotate:-8deg}
-@media (max-width:700px){
-  .mapa-poglad__podpis{position:static;display:block;margin:.5rem .9rem .9rem;background:none;padding:0}
-}
 .pin--1{background:var(--czerwien-stempla)}
 .pin--2{background:var(--pomarancz)}
 .pin--3{background:var(--petrol)}
 .pin--4{background:#7A4E8C}
 .pin--5{background:var(--miedz)}
 .pin--6{background:#2E5E8C}
+.pin--7{background:#4C7A54}
 
 /* --- Film ------------------------------------------------------------------------------ */
 .fasada-yt{
@@ -304,6 +291,24 @@ a:hover{color:var(--miedz)}
 .sklad-skali span{font-family:var(--f-tytul);font-weight:600;font-size:1rem;background:rgba(27,42,71,.08);border:1px solid rgba(27,42,71,.25);color:var(--atrament);border-radius:10px;padding:.25rem .65rem}
 .sklad-skali span.ding{background:var(--atrament);color:var(--papier-jasny)}
 @media (max-width:840px){.handpan-siatka{grid-template-columns:1fr}}
+
+/* --- Akordy (mini ściąga) --------------------------------------------------------------- */
+.akordy{margin-top:clamp(2.6rem,6vw,4rem);border-top:1px solid var(--atrament-mgla);padding-top:clamp(2rem,4vw,2.8rem)}
+.akordy__tytul{font-size:clamp(1.5rem,3.6vw,2rem);margin:0 0 .5rem}
+.akordy__wstep{max-width:64ch;margin:0 0 1.8rem}
+.akordy-siatka{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(11.5rem,100%),1fr));gap:clamp(1rem,2.4vw,1.5rem)}
+.karta-akordu{margin:0;background:var(--papier-jasny);border:1.5px solid rgba(27,42,71,.18);border-radius:16px;box-shadow:var(--cien-karty);padding:1rem 1rem 1.15rem;display:flex;flex-direction:column;align-items:center;text-align:center}
+.karta-akordu svg{width:100%;max-width:188px;height:auto;display:block;filter:drop-shadow(0 14px 22px rgba(16,28,51,.28))}
+.karta-akordu .pak circle{fill:rgba(246,231,200,.12);stroke:rgba(246,231,200,.28);stroke-width:1.5}
+.karta-akordu .pak text{font-family:var(--f-tekst);font-weight:600;font-size:12px;fill:#F6E7C8;opacity:.6;text-anchor:middle}
+.karta-akordu .pak--ding text{font-size:13px;opacity:.5}
+.karta-akordu .akord-akt circle{fill:var(--pomarancz);stroke:#F6E7C8;stroke-width:2}
+.karta-akordu .akord-akt text{fill:#FFFDF6;opacity:1}
+.karta-akordu figcaption{margin-top:.75rem;display:flex;flex-direction:column;gap:.12rem}
+.karta-akordu__nazwa{font-family:var(--f-tytul);font-weight:600;font-size:1.3rem;color:var(--atrament)}
+.karta-akordu__nuty{font-family:var(--f-tytul);font-weight:600;color:var(--miedz);font-size:1.02rem;letter-spacing:.02em}
+.karta-akordu__typ{font-family:var(--f-reczna);font-weight:600;color:var(--petrol);font-size:1.04rem;line-height:1.25}
+.akordy__zrodlo{margin-top:1.5rem;font-size:.94rem;color:rgba(27,42,71,.72)}
 
 /* --- Zasady i dołącz ------------------------------------------------------------------------ */
 .zasady-siatka{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,5vw,4rem);align-items:start}
