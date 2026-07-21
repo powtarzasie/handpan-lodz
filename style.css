@@ -45,6 +45,7 @@
   --cien-karty:0 18px 44px -24px rgba(16,28,51,.45);
   --szer-tresci:1140px;
   --naglowek-h:76px;
+  --pasek-h:2.55rem;
 }
 
 /* --- Baza ------------------------------------------------------------------ */
@@ -88,7 +89,7 @@ a:hover{color:var(--miedz)}
 .tytul-sekcji{font-size:clamp(1.95rem,4.6vw,3.1rem);letter-spacing:-.015em}
 .tytul-sekcji em{font-style:italic;color:var(--miedz);font-weight:500}
 .wstep-sekcji{max-width:46rem;font-size:clamp(1.05rem,1.45vw,1.18rem);color:rgba(27,42,71,.86)}
-.sekcja{padding-block:clamp(4rem,9vw,7.5rem);position:relative;scroll-margin-top:calc(var(--naglowek-h) + 12px)}
+.sekcja{padding-block:clamp(4rem,9vw,7.5rem);position:relative;scroll-margin-top:calc(var(--naglowek-h) + var(--pasek-h) + 12px)}
 /* sekcje głęboko pod foldem: przeglądarka pomija ich layout/paint aż do przewinięcia */
 .sekcja--dalej{content-visibility:auto;contain-intrinsic-size:auto 1200px}
 .sekcja--przyciemniona{background:linear-gradient(180deg,rgba(242,230,207,0) 0%,rgba(242,230,207,.75) 12%,rgba(242,230,207,.75) 88%,rgba(242,230,207,0) 100%)}
@@ -206,6 +207,35 @@ a:hover{color:var(--miedz)}
 .bilet__odznaka--kolejne{background:transparent;color:var(--petrol);border:1.5px solid rgba(51,112,107,.5);box-shadow:none}
 .bilet__odznaka--minione{background:transparent;color:rgba(27,42,71,.6);border:1.5px solid rgba(27,42,71,.3);box-shadow:none}
 .uwaga-spotkan{margin-top:1.6rem;font-size:1rem;color:rgba(27,42,71,.75);max-width:44rem}
+
+/* --- Pasek odliczania do najbliższego spotkania (sticky pod nagłówkiem) ---- */
+.pasek-odliczania{
+  position:sticky;top:var(--naglowek-h);z-index:99;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  min-height:var(--pasek-h);padding:.3rem clamp(.8rem,3vw,1.4rem);
+  background:var(--atrament);color:var(--papier-jasny);
+  font-family:var(--f-tekst);font-weight:600;
+  font-size:clamp(.8rem,2.7vw,.98rem);line-height:1.2;letter-spacing:.01em;
+  text-decoration:none;overflow:hidden;
+  box-shadow:0 10px 24px -18px rgba(16,28,51,.9);
+}
+.pasek-odliczania:hover,.pasek-odliczania:focus-visible{color:var(--papier-jasny);background:var(--noc)}
+.pasek-odliczania__ikona{flex:none;color:var(--zloto)}
+.pasek-odliczania__label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.92}
+.pasek-odliczania__czas{flex:none;white-space:nowrap;font-weight:700;color:var(--zloto);font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.pasek-odliczania__cta{flex:none;color:var(--zloto);transition:transform .25s}
+.pasek-odliczania:hover .pasek-odliczania__cta{transform:translateX(3px)}
+.pasek-odliczania--trwa{background:var(--petrol)}
+.pasek-odliczania--trwa .pasek-odliczania__ikona,
+.pasek-odliczania--trwa .pasek-odliczania__czas{color:var(--papier-jasny)}
+
+/* --- Archiwum minionych spotkań (zwijane, wyliczane z daty przez JS) ------- */
+.archiwum-spotkan{margin-top:2.4rem;border-top:1px dashed var(--atrament-mgla);padding-top:1.3rem}
+.archiwum-spotkan__naglowek{cursor:pointer;font-family:var(--f-tytul);font-weight:600;font-size:1.15rem;color:var(--atrament);list-style:none;display:inline-flex;align-items:center;gap:.5rem}
+.archiwum-spotkan__naglowek::-webkit-details-marker{display:none}
+.archiwum-spotkan__naglowek::before{content:"▸";color:var(--miedz);transition:transform .2s}
+.archiwum-spotkan[open] .archiwum-spotkan__naglowek::before{transform:rotate(90deg)}
+.bilety--archiwum{margin-top:1.6rem}
 
 /* --- O nas / kolaż ----------------------------------------------------------------- */
 .o-nas__siatka{display:grid;grid-template-columns:minmax(0,11fr) minmax(0,9fr);gap:clamp(2rem,5vw,4rem);align-items:center}

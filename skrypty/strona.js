@@ -285,28 +285,105 @@
     });
   }
 
-  /* ---------- wyróżnienie najbliższego spotkania (auto wg daty) ---------- */
-  const bilety = $$('.bilet[data-data]');
-  if (bilety.length) {
-    const dzis = new Date(); dzis.setHours(0, 0, 0, 0);
-    const zData = bilety
-      .map((el) => ({ el, d: new Date(el.dataset.data + 'T00:00:00') }))
-      .filter((x) => !isNaN(x.d));
-    const najblizszy = zData
-      .filter((x) => x.d >= dzis)
-      .sort((a, b) => a.d - b.d)[0];
-    for (const { el, d } of zData) {
-      const jest = najblizszy && el === najblizszy.el;
-      const minione = d < dzis;
-      el.classList.toggle('bilet--najblizsze', jest);
-      el.classList.toggle('bilet--minione', minione);
-      let odz = el.querySelector('.bilet__odznaka');
-      if (!odz) { odz = document.createElement('span'); odz.className = 'bilet__odznaka'; el.prepend(odz); }
-      odz.textContent = jest ? '✦ najbliższe spotkanie' : (minione ? 'minione' : 'kolejne spotkanie');
-      odz.classList.toggle('bilet__odznaka--kolejne', !jest && !minione);
-      odz.classList.toggle('bilet__odznaka--minione', minione);
+  /* ---------- spotkania: najbliższe + archiwum + pasek odliczania ----------
+     „Które spotkanie jest najbliższe" i „które minęły" NIE są zapisanym stanem —
+     wyliczamy je z bieżącej daty przy każdym otwarciu strony. Gdy termin minie,
+     ten sam kod sam wskaże kolejne i przeniesie miniony bilet do archiwum. */
+  (() => {
+    const bilety = $$('.bilet[data-start]');
+    const pasek = $('#pasek-odliczania');
+    if (!bilety.length && !pasek) return;
+
+    // override „teraz" tylko do testów: ?teraz=2026-07-27T12:00 (inaczej realny zegar)
+    const nadpisanieTeraz = (() => {
+      const p = new URLSearchParams(location.search).get('teraz');
+      if (!p) return null;
+      const d = new Date(p);
+      return isNaN(d) ? null : d.getTime();
+    })();
+    const teraz = () => (nadpisanieTeraz != null ? nadpisanieTeraz : Date.now());
+    const czas = (s) => { const d = new Date(s); return isNaN(d) ? null : d.getTime(); };
+
+    const zdarzenia = bilety
+      .map((el) => ({ el, nr: el.dataset.nr || '', start: czas(el.dataset.start), koniec: czas(el.dataset.koniec) }))
+      .filter((z) => z.start != null)
+      .map((z) => ({ ...z, koniec: z.koniec != null ? z.koniec : z.start }));
+
+    const archiwum = $('#archiwum-bilety');
+    const archiwumBox = $('#archiwum-spotkan');
+
+    // klasyfikacja biletów + przeniesienie minionych do archiwum; zwraca najbliższe
+    const klasyfikuj = (t) => {
+      const najblizszy = zdarzenia
+        .filter((z) => z.koniec > t)
+        .sort((a, b) => a.start - b.start)[0] || null;
+      for (const z of zdarzenia) {
+        const minione = z.koniec <= t;
+        const jest = najblizszy && z.el === najblizszy.el;
+        z.el.classList.toggle('bilet--najblizsze', jest);
+        z.el.classList.toggle('bilet--minione', minione);
+        let odz = z.el.querySelector('.bilet__odznaka');
+        if (!odz) { odz = document.createElement('span'); odz.className = 'bilet__odznaka'; z.el.prepend(odz); }
+        odz.textContent = jest ? '✦ najbliższe spotkanie' : (minione ? 'minione' : 'kolejne spotkanie');
+        odz.classList.toggle('bilet__odznaka--kolejne', !jest && !minione);
+        odz.classList.toggle('bilet__odznaka--minione', minione);
+        if (minione && archiwum && z.el.parentElement !== archiwum) {
+          z.el.classList.add('widoczna'); // widoczne od razu po rozwinięciu archiwum
+          archiwum.appendChild(z.el);
+        }
+      }
+      if (archiwum) {
+        Array.from(archiwum.children)
+          .sort((a, b) => (czas(b.dataset.start) || 0) - (czas(a.dataset.start) || 0))
+          .forEach((el) => archiwum.appendChild(el));
+        if (archiwumBox) archiwumBox.hidden = archiwum.children.length === 0;
+      }
+      return najblizszy;
+    };
+
+    // ---- pasek odliczania ----
+    const elLabel = pasek && $('.pasek-odliczania__label', pasek);
+    const elCzas = pasek && $('.pasek-odliczania__czas', pasek);
+    const dwuc = (n) => String(n).padStart(2, '0');
+    const odliczanie = (ms) => {
+      const s = Math.max(0, Math.floor(ms / 1000));
+      const dni = Math.floor(s / 86400);
+      const hms = `${dwuc(Math.floor(s / 3600) % 24)}:${dwuc(Math.floor(s / 60) % 60)}:${dwuc(s % 60)}`;
+      return dni > 0 ? `${dni} ${dni === 1 ? 'dzień' : 'dni'} ${hms}` : hms;
+    };
+    const dataPL = (ms) => new Date(ms).toLocaleDateString('pl-PL', { day: 'numeric', month: 'long' });
+
+    let najblizszy = klasyfikuj(teraz());
+
+    const odswiezPasek = () => {
+      if (!pasek) return;
+      const t = teraz();
+      if (najblizszy && t >= najblizszy.koniec) najblizszy = klasyfikuj(t); // termin minął → weź kolejne
+      pasek.classList.remove('pasek-odliczania--trwa');
+      if (!najblizszy) {
+        if (elLabel) elLabel.textContent = 'Nowe terminy wkrótce';
+        if (elCzas) elCzas.textContent = '— sprawdź grupę';
+        pasek.setAttribute('aria-label', 'Nowe terminy spotkań pojawią się wkrótce — sprawdź grupę.');
+        return;
+      }
+      const nazwa = najblizszy.nr ? `${najblizszy.nr}. spotkanie` : 'Najbliższe spotkanie';
+      if (t >= najblizszy.start) {
+        pasek.classList.add('pasek-odliczania--trwa');
+        if (elLabel) elLabel.textContent = `${nazwa} — gramy teraz`;
+        if (elCzas) elCzas.textContent = '🪘';
+        pasek.setAttribute('aria-label', `${nazwa} — gramy teraz! Zobacz szczegóły.`);
+        return;
+      }
+      if (elLabel) elLabel.textContent = `${nazwa} za`;
+      if (elCzas) elCzas.textContent = odliczanie(najblizszy.start - t);
+      pasek.setAttribute('aria-label', `Najbliższe spotkanie: ${dataPL(najblizszy.start)}, godz. 15:00. Zobacz szczegóły.`);
+    };
+
+    if (pasek) {
+      odswiezPasek();
+      setInterval(odswiezPasek, 1000);
     }
-  }
+  })();
 
   /* ---------- lite-embed YouTube (fasada) ---------- */
   $$('.fasada-yt').forEach((fasada) => {
