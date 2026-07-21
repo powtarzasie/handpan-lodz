@@ -341,17 +341,16 @@
       return najblizszy;
     };
 
-    // ---- pasek odliczania ----
+    // ---- pasek odliczania (kafelki: dni / godziny / minuty / sekundy) ----
     const elLabel = pasek && $('.pasek-odliczania__label', pasek);
-    const elCzas = pasek && $('.pasek-odliczania__czas', pasek);
+    const elData = pasek && $('.pasek-odliczania__data', pasek);
+    const elKafelki = pasek && $('.pasek-odliczania__kafelki', pasek);
+    const kafel = (j) => (pasek ? $(`.kafel__num[data-jed="${j}"]`, pasek) : null);
+    const kD = kafel('d'), kH = kafel('h'), kM = kafel('m'), kS = kafel('s');
     const dwuc = (n) => String(n).padStart(2, '0');
-    const odliczanie = (ms) => {
-      const s = Math.max(0, Math.floor(ms / 1000));
-      const dni = Math.floor(s / 86400);
-      const hms = `${dwuc(Math.floor(s / 3600) % 24)}:${dwuc(Math.floor(s / 60) % 60)}:${dwuc(s % 60)}`;
-      return dni > 0 ? `${dni} ${dni === 1 ? 'dzień' : 'dni'} ${hms}` : hms;
-    };
     const dataPL = (ms) => new Date(ms).toLocaleDateString('pl-PL', { day: 'numeric', month: 'long' });
+    const godzPL = (ms) => new Date(ms).toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' });
+    const pokazKafelki = (widoczne) => { if (elKafelki) elKafelki.style.display = widoczne ? 'flex' : 'none'; };
 
     let najblizszy = klasyfikuj(teraz());
 
@@ -360,23 +359,32 @@
       const t = teraz();
       if (najblizszy && t >= najblizszy.koniec) najblizszy = klasyfikuj(t); // termin minął → weź kolejne
       pasek.classList.remove('pasek-odliczania--trwa');
+      const nazwa = najblizszy && najblizszy.nr ? `${najblizszy.nr}. spotkanie` : 'Najbliższe spotkanie';
+
       if (!najblizszy) {
+        pokazKafelki(false);
         if (elLabel) elLabel.textContent = 'Nowe terminy wkrótce';
-        if (elCzas) elCzas.textContent = '— sprawdź grupę';
+        if (elData) elData.textContent = 'sprawdź grupę';
         pasek.setAttribute('aria-label', 'Nowe terminy spotkań pojawią się wkrótce — sprawdź grupę.');
         return;
       }
-      const nazwa = najblizszy.nr ? `${najblizszy.nr}. spotkanie` : 'Najbliższe spotkanie';
-      if (t >= najblizszy.start) {
+      if (t >= najblizszy.start) { // spotkanie trwa
         pasek.classList.add('pasek-odliczania--trwa');
+        pokazKafelki(false);
         if (elLabel) elLabel.textContent = `${nazwa} — gramy teraz`;
-        if (elCzas) elCzas.textContent = '🪘';
+        if (elData) elData.textContent = `do ${godzPL(najblizszy.koniec)} · dołącz do nas`;
         pasek.setAttribute('aria-label', `${nazwa} — gramy teraz! Zobacz szczegóły.`);
         return;
       }
+      pokazKafelki(true);
+      const s = Math.max(0, Math.floor((najblizszy.start - t) / 1000));
+      if (kD) kD.textContent = dwuc(Math.floor(s / 86400));
+      if (kH) kH.textContent = dwuc(Math.floor(s / 3600) % 24);
+      if (kM) kM.textContent = dwuc(Math.floor(s / 60) % 60);
+      if (kS) kS.textContent = dwuc(s % 60);
       if (elLabel) elLabel.textContent = `${nazwa} za`;
-      if (elCzas) elCzas.textContent = odliczanie(najblizszy.start - t);
-      pasek.setAttribute('aria-label', `Najbliższe spotkanie: ${dataPL(najblizszy.start)}, godz. 15:00. Zobacz szczegóły.`);
+      if (elData) elData.textContent = `${dataPL(najblizszy.start)}, ${godzPL(najblizszy.start)}`;
+      pasek.setAttribute('aria-label', `Najbliższe spotkanie: ${dataPL(najblizszy.start)}, godz. ${godzPL(najblizszy.start)}. Zobacz szczegóły.`);
     };
 
     if (pasek) {

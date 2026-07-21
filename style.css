@@ -45,7 +45,7 @@
   --cien-karty:0 18px 44px -24px rgba(16,28,51,.45);
   --szer-tresci:1140px;
   --naglowek-h:76px;
-  --pasek-h:2.55rem;
+  --pasek-h:3.7rem;
 }
 
 /* --- Baza ------------------------------------------------------------------ */
@@ -208,26 +208,33 @@ a:hover{color:var(--miedz)}
 .bilet__odznaka--minione{background:transparent;color:rgba(27,42,71,.6);border:1.5px solid rgba(27,42,71,.3);box-shadow:none}
 .uwaga-spotkan{margin-top:1.6rem;font-size:1rem;color:rgba(27,42,71,.75);max-width:44rem}
 
-/* --- Pasek odliczania do najbliższego spotkania (sticky pod nagłówkiem) ---- */
+/* --- Pasek odliczania do najbliższego spotkania (kafelki, sticky) ---------- */
 .pasek-odliczania{
-  position:sticky;top:var(--naglowek-h);z-index:99;
-  display:flex;align-items:center;justify-content:center;gap:.5rem;
-  min-height:var(--pasek-h);padding:.3rem clamp(.8rem,3vw,1.4rem);
+  position:sticky;top:var(--naglowek-h);z-index:99;display:block;
+  min-height:var(--pasek-h);padding:.4rem clamp(.7rem,3vw,1.4rem);
   background:var(--atrament);color:var(--papier-jasny);
-  font-family:var(--f-tekst);font-weight:600;
-  font-size:clamp(.8rem,2.7vw,.98rem);line-height:1.2;letter-spacing:.01em;
-  text-decoration:none;overflow:hidden;
+  font-family:var(--f-tekst);line-height:1.15;text-decoration:none;overflow:hidden;
   box-shadow:0 10px 24px -18px rgba(16,28,51,.9);
 }
-.pasek-odliczania:hover,.pasek-odliczania:focus-visible{color:var(--papier-jasny);background:var(--noc)}
-.pasek-odliczania__ikona{flex:none;color:var(--zloto)}
-.pasek-odliczania__label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.92}
-.pasek-odliczania__czas{flex:none;white-space:nowrap;font-weight:700;color:var(--zloto);font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
-.pasek-odliczania__cta{flex:none;color:var(--zloto);transition:transform .25s}
-.pasek-odliczania:hover .pasek-odliczania__cta{transform:translateX(3px)}
+.pasek-odliczania:hover,.pasek-odliczania:focus-visible{background:var(--noc);color:var(--papier-jasny)}
+.pasek-odliczania__wnetrze{max-width:var(--szer-tresci);margin-inline:auto;min-height:calc(var(--pasek-h) - .8rem);display:flex;align-items:center;justify-content:space-between;gap:clamp(.6rem,2vw,1.4rem)}
+.pasek-odliczania__info{display:flex;flex-direction:column;gap:.08rem;min-width:0}
+.pasek-odliczania__tytul{display:flex;align-items:center;gap:.4rem;font-weight:600;font-size:clamp(.84rem,2.4vw,1rem);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pasek-odliczania__ikona{flex:none;color:var(--zloto);font-style:normal}
+.pasek-odliczania__label{overflow:hidden;text-overflow:ellipsis}
+.pasek-odliczania__data{font-size:clamp(.72rem,1.9vw,.85rem);color:var(--zloto);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pasek-odliczania__kafelki{display:flex;gap:clamp(.3rem,1.2vw,.5rem);flex:none}
+.pasek-odliczania .kafel{background:var(--papier-jasny);border-radius:7px;padding:.26rem .5rem;min-width:2.85rem;display:flex;flex-direction:column;align-items:center;line-height:1}
+.pasek-odliczania .kafel__num{font-weight:640;font-size:clamp(1.1rem,3.2vw,1.4rem);color:var(--atrament);font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.pasek-odliczania .kafel small{font-size:.66rem;color:var(--miedz-ciemna);margin-top:.15rem;letter-spacing:.02em}
+.pasek-odliczania .kafel .krotki{display:none}
 .pasek-odliczania--trwa{background:var(--petrol)}
-.pasek-odliczania--trwa .pasek-odliczania__ikona,
-.pasek-odliczania--trwa .pasek-odliczania__czas{color:var(--papier-jasny)}
+.pasek-odliczania--trwa .pasek-odliczania__data,.pasek-odliczania--trwa .pasek-odliczania__ikona{color:var(--papier-jasny)}
+@media (max-width:520px){
+  .pasek-odliczania .kafel .pelny{display:none}
+  .pasek-odliczania .kafel .krotki{display:inline}
+  .pasek-odliczania .kafel{min-width:2.5rem;padding:.22rem .32rem}
+}
 
 /* --- Archiwum minionych spotkań (zwijane, wyliczane z daty przez JS) ------- */
 .archiwum-spotkan{margin-top:2.4rem;border-top:1px dashed var(--atrament-mgla);padding-top:1.3rem}
