@@ -201,52 +201,52 @@
     }, { once: true });
   }
 
-  /* ---------- grywalny handpan D-Kurd (Web Audio) ---------- */
+  /* ---------- silnik audio (wspólny: handpan + karty akordów) ---------- */
+  let audioCtx = null;
+  let audioMaster = null;
+  const zapewnijAudio = () => {
+    if (!audioCtx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      audioCtx = new AC();
+      audioMaster = audioCtx.createGain();
+      audioMaster.gain.value = 0.55;
+      const kompresor = audioCtx.createDynamicsCompressor();
+      audioMaster.connect(kompresor);
+      kompresor.connect(audioCtx.destination);
+    }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  };
+
+  // Syntetyczny "handpanowy" ton: podstawa + oktawa + kwinta nad oktawą,
+  // każdy składnik z własnym, coraz krótszym wybrzmieniem.
+  const zagraj = (freq) => {
+    if (!zapewnijAudio()) return;
+    const t = audioCtx.currentTime;
+    const skladniki = [
+      [1.0, 0.5, 3.4],
+      [2.0, 0.22, 2.3],
+      [3.01, 0.11, 1.6],
+      [4.16, 0.035, 0.9],
+    ];
+    for (const [mnoznik, amp, dlugosc] of skladniki) {
+      const osc = audioCtx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.value = freq * mnoznik;
+      osc.detune.value = Math.random() * 5 - 2.5;
+      const g = audioCtx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.linearRampToValueAtTime(amp, t + 0.006);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dlugosc);
+      osc.connect(g); g.connect(audioMaster);
+      osc.start(t); osc.stop(t + dlugosc + 0.05);
+    }
+  };
+
+  /* ---------- grywalny handpan D-Kurd ---------- */
   const instrument = $('#instrument-dkurd');
   if (instrument) {
-    let ctx = null;
-    let master = null;
-
-    const zapewnijAudio = () => {
-      if (!ctx) {
-        const AC = window.AudioContext || window.webkitAudioContext;
-        if (!AC) return null;
-        ctx = new AC();
-        master = ctx.createGain();
-        master.gain.value = 0.55;
-        const kompresor = ctx.createDynamicsCompressor();
-        master.connect(kompresor);
-        kompresor.connect(ctx.destination);
-      }
-      if (ctx.state === 'suspended') ctx.resume();
-      return ctx;
-    };
-
-    // Syntetyczny "handpanowy" ton: podstawa + oktawa + kwinta nad oktawą,
-    // każdy składnik z własnym, coraz krótszym wybrzmieniem.
-    const zagraj = (freq) => {
-      if (!zapewnijAudio()) return;
-      const t = ctx.currentTime;
-      const skladniki = [
-        [1.0, 0.5, 3.4],
-        [2.0, 0.22, 2.3],
-        [3.01, 0.11, 1.6],
-        [4.16, 0.035, 0.9],
-      ];
-      for (const [mnoznik, amp, dlugosc] of skladniki) {
-        const osc = ctx.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.value = freq * mnoznik;
-        osc.detune.value = Math.random() * 5 - 2.5;
-        const g = ctx.createGain();
-        g.gain.setValueAtTime(0.0001, t);
-        g.gain.linearRampToValueAtTime(amp, t + 0.006);
-        g.gain.exponentialRampToValueAtTime(0.0001, t + dlugosc);
-        osc.connect(g); g.connect(master);
-        osc.start(t); osc.stop(t + dlugosc + 0.05);
-      }
-    };
-
     const warstwaFal = $('#warstwa-fal', instrument);
     const NS = 'http://www.w3.org/2000/svg';
     const falaWizualna = (cx, cy) => {
@@ -282,6 +282,29 @@
       pole.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); uderz(pole); }
       });
+    });
+  }
+
+  /* ---------- karty akordów: klik → arpeggio z pól akordu + puls ---------- */
+  const kartyAkordow = $$('.karta-akordu[data-akord]');
+  if (kartyAkordow.length) {
+    const zagrajAkord = (freqs, figura) => {
+      if (!zapewnijAudio()) return;
+      freqs.forEach((f, i) => setTimeout(() => zagraj(f), i * 120));
+      if (ruchOK) {
+        figura.classList.remove('gra');
+        void figura.offsetWidth;            // restart animacji przy ponownym kliknięciu
+        figura.classList.add('gra');
+        setTimeout(() => figura.classList.remove('gra'), 620 + (freqs.length - 1) * 120);
+      }
+    };
+    kartyAkordow.forEach((figura) => {
+      const freqs = (figura.dataset.akord || '').trim().split(/\s+/).map(Number).filter((f) => f > 0);
+      if (!freqs.length) return;
+      const odpal = () => zagrajAkord(freqs, figura);
+      figura.addEventListener('click', odpal);
+      const przycisk = $('.karta-akordu__graj', figura);
+      if (przycisk) przycisk.addEventListener('click', (e) => { e.stopPropagation(); odpal(); });
     });
   }
 
