@@ -285,6 +285,29 @@
     });
   }
 
+  /* ---------- wyróżnienie najbliższego spotkania (auto wg daty) ---------- */
+  const bilety = $$('.bilet[data-data]');
+  if (bilety.length) {
+    const dzis = new Date(); dzis.setHours(0, 0, 0, 0);
+    const zData = bilety
+      .map((el) => ({ el, d: new Date(el.dataset.data + 'T00:00:00') }))
+      .filter((x) => !isNaN(x.d));
+    const najblizszy = zData
+      .filter((x) => x.d >= dzis)
+      .sort((a, b) => a.d - b.d)[0];
+    for (const { el, d } of zData) {
+      const jest = najblizszy && el === najblizszy.el;
+      const minione = d < dzis;
+      el.classList.toggle('bilet--najblizsze', jest);
+      el.classList.toggle('bilet--minione', minione);
+      let odz = el.querySelector('.bilet__odznaka');
+      if (!odz) { odz = document.createElement('span'); odz.className = 'bilet__odznaka'; el.prepend(odz); }
+      odz.textContent = jest ? '✦ najbliższe spotkanie' : (minione ? 'minione' : 'kolejne spotkanie');
+      odz.classList.toggle('bilet__odznaka--kolejne', !jest && !minione);
+      odz.classList.toggle('bilet__odznaka--minione', minione);
+    }
+  }
+
   /* ---------- lite-embed YouTube (fasada) ---------- */
   $$('.fasada-yt').forEach((fasada) => {
     fasada.addEventListener('click', () => {

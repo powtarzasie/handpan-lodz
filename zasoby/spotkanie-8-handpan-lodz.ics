@@ -9,8 +9,8 @@ DTSTAMP:20260712T090000Z
 DTSTART;TZID=Europe/Warsaw:20260726T150000
 DTEND;TZID=Europe/Warsaw:20260726T180000
 SUMMARY:Handpan Łódź — 8. spotkanie (letni jam w plenerze)
-DESCRIPTION:Rozgrzewka\, impro\, rozmowy i wspólne granie. Miejsce: Molo na Stawie Miejskim w Parku Miejskim w Zgierzu. Wstęp wolny\, każdy poziom mile widziany.
-LOCATION:Molo na Stawie Miejskim\, Park Miejski im. T. Kościuszki\, Zgierz
+DESCRIPTION:Rozgrzewka\, impro\, rozmowy i wspólne granie. Miejsce: Molo na Stawie Miejskim\, al. Armii Krajowej 28A\, 95-100 Zgierz (Park Miejski). Mapa: https://maps.app.goo.gl/b3hdGa8itCBzET446 Wstęp wolny\, każdy poziom mile widziany.
+LOCATION:Molo na Stawie Miejskim\, al. Armii Krajowej 28A\, 95-100 Zgierz
 GEO:51.8593615;19.408804
 URL:https://handpanlodz.pl/#spotkania
 END:VEVENT

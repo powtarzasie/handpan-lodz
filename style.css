@@ -197,6 +197,14 @@ a:hover{color:var(--miedz)}
 .zetony span{font-size:.86rem;font-weight:500;color:var(--atrament);background:rgba(51,112,107,.12);border:1px solid rgba(51,112,107,.3);padding:.22rem .7rem;border-radius:999px}
 .bilet__akcje{margin-top:1.2rem;display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
 .bilet__akcje a{font-size:.95rem}
+.bilet__akcje-mapa{display:inline-flex;align-items:center;gap:.25rem}
+.bilet__mapa{font-weight:600;color:var(--miedz-ciemna);text-decoration:underline;text-underline-offset:2px}
+/* wyróżnienie najbliższego spotkania */
+.bilet--najblizsze{border-color:var(--pomarancz);border-width:2px;background:linear-gradient(180deg,#FFF7EC,var(--papier-jasny) 62%);box-shadow:0 22px 50px -24px rgba(222,122,38,.6),0 0 0 4px rgba(222,122,38,.12)}
+.bilet--minione{filter:grayscale(.35) opacity(.72)}
+.bilet__odznaka{position:absolute;top:-.85rem;left:1.1rem;z-index:2;font-family:var(--f-tekst);font-weight:600;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#FFFDF6;background:var(--pomarancz);padding:.32rem .72rem;border-radius:999px;box-shadow:0 8px 16px -10px rgba(222,122,38,.8);transform:rotate(-2deg);white-space:nowrap}
+.bilet__odznaka--kolejne{background:transparent;color:var(--petrol);border:1.5px solid rgba(51,112,107,.5);box-shadow:none}
+.bilet__odznaka--minione{background:transparent;color:rgba(27,42,71,.6);border:1.5px solid rgba(27,42,71,.3);box-shadow:none}
 .uwaga-spotkan{margin-top:1.6rem;font-size:1rem;color:rgba(27,42,71,.75);max-width:44rem}
 
 /* --- O nas / kolaż ----------------------------------------------------------------- */
