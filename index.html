@@ -458,15 +458,15 @@
             <p class="wstep-sekcji">Handpan to współczesny <strong>instrument perkusyjno-melodyczny ze stali</strong>, na którym gra się dłońmi i&nbsp;palcami — bez pałek. Dwie stalowe czasze skrywają starannie nastrojone pola tonowe, a&nbsp;każde uderzenie opuszka wydobywa miękki, dzwoniący dźwięk z&nbsp;długim wybrzmieniem.</p>
             <p>Wszystko zaczęło się od instrumentu <strong>Hang</strong>, stworzonego w&nbsp;2000&nbsp;roku przez szwajcarską manufakturę <strong>PANArt</strong> — dlatego potocznie handpan bywa nazywany „hang drum”. Dziś na świecie działają setki manufaktur, a&nbsp;handpan stał się ulubionym instrumentem do medytacji, improwizacji i&nbsp;grania w&nbsp;plenerze — bo niczego nie trzeba podłączać, wystarczy usiąść i&nbsp;grać.</p>
             <h3>Skala D-Kurd — ulubiona skala wspólnego grania</h3>
-            <p><strong>D-Kurd</strong> to najpopularniejsza skala handpanowa: molowa, spokojna, medytacyjna. Do jamowania nadaje się idealnie, bo niemal wszystko brzmi w&nbsp;niej dobrze — trudno o&nbsp;fałsz, łatwo o&nbsp;flow. Typowy układ ma 9&nbsp;pól: centralny <em>ding</em> D3 oraz krąg A3–A4, co składa się na naturalną skalę d-moll.</p>
-            <div class="sklad-skali" aria-label="Dźwięki skali D-Kurd 9">
-              <span class="ding">D3 · ding</span><span>A3</span><span>B♭3</span><span>C4</span><span>D4</span><span>E4</span><span>F4</span><span>G4</span><span>A4</span>
+            <p><strong>D-Kurd</strong> to najpopularniejsza skala handpanowa: molowa, spokojna, medytacyjna. Do jamowania nadaje się idealnie, bo niemal wszystko brzmi w&nbsp;niej dobrze — trudno o&nbsp;fałsz, łatwo o&nbsp;flow. Nasz układ (D-Kurd&nbsp;9+) to centralny <em>ding</em> D3 i&nbsp;dziewięć pól tonowych dokoła — od A3 po wysokie C5 — naturalna skala d-moll.</p>
+            <div class="sklad-skali" aria-label="Dźwięki skali D-Kurd 9+">
+              <span class="ding">D3 · ding</span><span>A3</span><span>B♭3</span><span>C4</span><span>D4</span><span>E4</span><span>F4</span><span>G4</span><span>A4</span><span>C5</span>
             </div>
             <p style="margin-top:1.1rem">Na naszych spotkaniach najczęściej gra kilka D-Kurdów naraz — właśnie dlatego tak łatwo się dołączyć.</p>
           </div>
           <div class="instrument odslon" id="instrument-dkurd">
             <!-- Grywalny handpan D-Kurd: SVG + Web Audio (progressive enhancement) -->
-            <svg viewBox="0 0 560 560" role="img" aria-label="Interaktywny schemat handpanu w skali D-Kurd: centralny ding D3 i osiem pól od A3 do A4">
+            <svg viewBox="0 0 560 560" role="img" aria-label="Interaktywny schemat handpanu D-Kurd 9+: centralny ding D3 i dziewięć pól od A3 do wysokiego C5, w układzie jak na realnym instrumencie">
               <defs>
                 <radialGradient id="grad-tarcza" cx="38%" cy="30%" r="80%">
                   <stop offset="0%" stop-color="#64769C"/>
@@ -526,46 +526,51 @@
                 <text x="280" y="330" text-anchor="middle" font-size="21">D3</text>
               </g>
 
-              <!-- pola tonowe: układ zygzakowy, od A3 (dół) do A4 (góra) -->
+              <!-- pola tonowe (układ jak na realnym handpanie D-Kurd 9+): A3 na dole, dwa łuki w górę, u góry A4 i C5 -->
               <g class="pole" role="button" tabindex="0" data-freq="220.00" aria-label="Zagraj A3">
                 <ellipse class="membrana" cx="280" cy="448" rx="46" ry="38" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2"/>
                 <ellipse cx="280" cy="444" rx="17" ry="13" fill="url(#grad-wglebienie)"/>
                 <text x="280" y="453" text-anchor="middle" font-size="17">A3</text>
               </g>
               <g class="pole" role="button" tabindex="0" data-freq="233.08" aria-label="Zagraj B♭3">
-                <ellipse class="membrana" cx="399" cy="399" rx="44" ry="36" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(45 399 399)"/>
-                <ellipse cx="399" cy="396" rx="16" ry="12" fill="url(#grad-wglebienie)"/>
-                <text x="399" y="404" text-anchor="middle" font-size="16">B♭3</text>
+                <ellipse class="membrana" cx="161" cy="399" rx="43" ry="36" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(-45 161 399)"/>
+                <ellipse cx="161" cy="396" rx="16" ry="12" fill="url(#grad-wglebienie)"/>
+                <text x="161" y="404" text-anchor="middle" font-size="16">B♭3</text>
               </g>
               <g class="pole" role="button" tabindex="0" data-freq="261.63" aria-label="Zagraj C4">
-                <ellipse class="membrana" cx="161" cy="399" rx="42" ry="35" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(-45 161 399)"/>
-                <ellipse cx="161" cy="396" rx="15" ry="12" fill="url(#grad-wglebienie)"/>
-                <text x="161" y="404" text-anchor="middle" font-size="16">C4</text>
+                <ellipse class="membrana" cx="399" cy="399" rx="42" ry="35" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(45 399 399)"/>
+                <ellipse cx="399" cy="396" rx="15" ry="12" fill="url(#grad-wglebienie)"/>
+                <text x="399" y="404" text-anchor="middle" font-size="16">C4</text>
               </g>
               <g class="pole" role="button" tabindex="0" data-freq="293.66" aria-label="Zagraj D4">
-                <ellipse class="membrana" cx="448" cy="280" rx="40" ry="34" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(90 448 280)"/>
-                <ellipse cx="448" cy="277" rx="15" ry="11" fill="url(#grad-wglebienie)"/>
-                <text x="448" y="286" text-anchor="middle" font-size="16">D4</text>
+                <ellipse class="membrana" cx="112" cy="280" rx="40" ry="34" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(90 112 280)"/>
+                <ellipse cx="112" cy="277" rx="15" ry="11" fill="url(#grad-wglebienie)"/>
+                <text x="112" y="286" text-anchor="middle" font-size="16">D4</text>
               </g>
               <g class="pole" role="button" tabindex="0" data-freq="329.63" aria-label="Zagraj E4">
-                <ellipse class="membrana" cx="112" cy="280" rx="39" ry="33" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(90 112 280)"/>
-                <ellipse cx="112" cy="277" rx="14" ry="11" fill="url(#grad-wglebienie)"/>
-                <text x="112" y="286" text-anchor="middle" font-size="16">E4</text>
+                <ellipse class="membrana" cx="448" cy="280" rx="39" ry="33" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(90 448 280)"/>
+                <ellipse cx="448" cy="277" rx="14" ry="11" fill="url(#grad-wglebienie)"/>
+                <text x="448" y="286" text-anchor="middle" font-size="16">E4</text>
               </g>
               <g class="pole" role="button" tabindex="0" data-freq="349.23" aria-label="Zagraj F4">
-                <ellipse class="membrana" cx="399" cy="161" rx="37" ry="31" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(-45 399 161)"/>
-                <ellipse cx="399" cy="158" rx="13" ry="10" fill="url(#grad-wglebienie)"/>
-                <text x="399" y="166" text-anchor="middle" font-size="15">F4</text>
+                <ellipse class="membrana" cx="161" cy="161" rx="37" ry="31" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(45 161 161)"/>
+                <ellipse cx="161" cy="158" rx="13" ry="10" fill="url(#grad-wglebienie)"/>
+                <text x="161" y="166" text-anchor="middle" font-size="15">F4</text>
               </g>
               <g class="pole" role="button" tabindex="0" data-freq="392.00" aria-label="Zagraj G4">
-                <ellipse class="membrana" cx="161" cy="161" rx="36" ry="30" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(45 161 161)"/>
-                <ellipse cx="161" cy="158" rx="13" ry="10" fill="url(#grad-wglebienie)"/>
-                <text x="161" y="166" text-anchor="middle" font-size="15">G4</text>
+                <ellipse class="membrana" cx="399" cy="161" rx="36" ry="30" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2" transform="rotate(-45 399 161)"/>
+                <ellipse cx="399" cy="158" rx="13" ry="10" fill="url(#grad-wglebienie)"/>
+                <text x="399" y="166" text-anchor="middle" font-size="15">G4</text>
               </g>
               <g class="pole" role="button" tabindex="0" data-freq="440.00" aria-label="Zagraj A4">
-                <ellipse class="membrana" cx="280" cy="112" rx="34" ry="29" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2"/>
-                <ellipse cx="280" cy="109" rx="12" ry="10" fill="url(#grad-wglebienie)"/>
-                <text x="280" y="118" text-anchor="middle" font-size="15">A4</text>
+                <ellipse class="membrana" cx="236" cy="112" rx="33" ry="28" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2"/>
+                <ellipse cx="236" cy="109" rx="12" ry="10" fill="url(#grad-wglebienie)"/>
+                <text x="236" y="118" text-anchor="middle" font-size="15">A4</text>
+              </g>
+              <g class="pole" role="button" tabindex="0" data-freq="523.25" aria-label="Zagraj C5">
+                <ellipse class="membrana" cx="324" cy="112" rx="32" ry="27" fill="url(#grad-pole)" stroke="#0F1B31" stroke-width="2"/>
+                <ellipse cx="324" cy="109" rx="11" ry="9" fill="url(#grad-wglebienie)"/>
+                <text x="324" y="118" text-anchor="middle" font-size="15">C5</text>
               </g>
             </svg>
             <p class="podpis-instrumentu">kliknij (albo stuknij) pola — zagrasz prawdziwą skalę D-Kurd ♪</p>
@@ -582,15 +587,16 @@
               <svg viewBox="0 0 240 240" role="img" aria-label="Akord C-dur na handpanie D-Kurd: pola C4, E4 i G4">
                 <circle cx="120" cy="120" r="115" fill="#1B2A47" stroke="#B9843F" stroke-width="4"/>
                 <circle cx="120" cy="120" r="99" fill="none" stroke="#C98F4A" stroke-opacity=".25" stroke-width="1.4"/>
-                <g class="pak"><circle cx="120" cy="32" r="20"/><text x="120" y="37">A4</text></g>
-                <g class="pak"><circle cx="182" cy="58" r="20"/><text x="182" y="63">F4</text></g>
-                <g class="pak"><circle cx="208" cy="120" r="20"/><text x="208" y="125">D4</text></g>
-                <g class="pak"><circle cx="182" cy="182" r="20"/><text x="182" y="187">B♭3</text></g>
-                <g class="pak"><circle cx="120" cy="208" r="20"/><text x="120" y="213">A3</text></g>
-                <g class="pak akord-akt"><circle cx="58" cy="182" r="20"/><text x="58" y="187">C4</text></g>
-                <g class="pak akord-akt"><circle cx="32" cy="120" r="20"/><text x="32" y="125">E4</text></g>
-                <g class="pak akord-akt"><circle cx="58" cy="58" r="20"/><text x="58" y="63">G4</text></g>
-                <g class="pak pak--ding"><circle cx="120" cy="120" r="25"/><text x="120" y="125">D3</text></g>
+                <g class="pak"><circle cx="120" cy="200" r="18"/><text x="120" y="204">A3</text></g>
+                <g class="pak"><circle cx="59" cy="171" r="18"/><text x="59" y="175">B♭3</text></g>
+                <g class="pak akord-akt"><circle cx="181" cy="171" r="18"/><text x="181" y="175">C4</text></g>
+                <g class="pak"><circle cx="40" cy="127" r="18"/><text x="40" y="131">D4</text></g>
+                <g class="pak akord-akt"><circle cx="200" cy="127" r="18"/><text x="200" y="131">E4</text></g>
+                <g class="pak"><circle cx="52" cy="78" r="18"/><text x="52" y="82">F4</text></g>
+                <g class="pak akord-akt"><circle cx="188" cy="78" r="18"/><text x="188" y="82">G4</text></g>
+                <g class="pak"><circle cx="90" cy="46" r="18"/><text x="90" y="50">A4</text></g>
+                <g class="pak"><circle cx="150" cy="46" r="18"/><text x="150" y="50">C5</text></g>
+                <g class="pak pak--ding"><circle cx="120" cy="120" r="24"/><text x="120" y="125">D3</text></g>
               </svg>
               <figcaption>
                 <span class="karta-akordu__nazwa">C-dur</span>
@@ -603,15 +609,16 @@
               <svg viewBox="0 0 240 240" role="img" aria-label="Akord F-dur na handpanie D-Kurd: pola F4, A3 i C4">
                 <circle cx="120" cy="120" r="115" fill="#1B2A47" stroke="#B9843F" stroke-width="4"/>
                 <circle cx="120" cy="120" r="99" fill="none" stroke="#C98F4A" stroke-opacity=".25" stroke-width="1.4"/>
-                <g class="pak"><circle cx="120" cy="32" r="20"/><text x="120" y="37">A4</text></g>
-                <g class="pak akord-akt"><circle cx="182" cy="58" r="20"/><text x="182" y="63">F4</text></g>
-                <g class="pak"><circle cx="208" cy="120" r="20"/><text x="208" y="125">D4</text></g>
-                <g class="pak"><circle cx="182" cy="182" r="20"/><text x="182" y="187">B♭3</text></g>
-                <g class="pak akord-akt"><circle cx="120" cy="208" r="20"/><text x="120" y="213">A3</text></g>
-                <g class="pak akord-akt"><circle cx="58" cy="182" r="20"/><text x="58" y="187">C4</text></g>
-                <g class="pak"><circle cx="32" cy="120" r="20"/><text x="32" y="125">E4</text></g>
-                <g class="pak"><circle cx="58" cy="58" r="20"/><text x="58" y="63">G4</text></g>
-                <g class="pak pak--ding"><circle cx="120" cy="120" r="25"/><text x="120" y="125">D3</text></g>
+                <g class="pak akord-akt"><circle cx="120" cy="200" r="18"/><text x="120" y="204">A3</text></g>
+                <g class="pak"><circle cx="59" cy="171" r="18"/><text x="59" y="175">B♭3</text></g>
+                <g class="pak akord-akt"><circle cx="181" cy="171" r="18"/><text x="181" y="175">C4</text></g>
+                <g class="pak"><circle cx="40" cy="127" r="18"/><text x="40" y="131">D4</text></g>
+                <g class="pak"><circle cx="200" cy="127" r="18"/><text x="200" y="131">E4</text></g>
+                <g class="pak akord-akt"><circle cx="52" cy="78" r="18"/><text x="52" y="82">F4</text></g>
+                <g class="pak"><circle cx="188" cy="78" r="18"/><text x="188" y="82">G4</text></g>
+                <g class="pak"><circle cx="90" cy="46" r="18"/><text x="90" y="50">A4</text></g>
+                <g class="pak"><circle cx="150" cy="46" r="18"/><text x="150" y="50">C5</text></g>
+                <g class="pak pak--ding"><circle cx="120" cy="120" r="24"/><text x="120" y="125">D3</text></g>
               </svg>
               <figcaption>
                 <span class="karta-akordu__nazwa">F-dur</span>
@@ -624,15 +631,16 @@
               <svg viewBox="0 0 240 240" role="img" aria-label="Akord B-dur (Hes-dur) na handpanie D-Kurd: pola B♭3, D4 i F4">
                 <circle cx="120" cy="120" r="115" fill="#1B2A47" stroke="#B9843F" stroke-width="4"/>
                 <circle cx="120" cy="120" r="99" fill="none" stroke="#C98F4A" stroke-opacity=".25" stroke-width="1.4"/>
-                <g class="pak"><circle cx="120" cy="32" r="20"/><text x="120" y="37">A4</text></g>
-                <g class="pak akord-akt"><circle cx="182" cy="58" r="20"/><text x="182" y="63">F4</text></g>
-                <g class="pak akord-akt"><circle cx="208" cy="120" r="20"/><text x="208" y="125">D4</text></g>
-                <g class="pak akord-akt"><circle cx="182" cy="182" r="20"/><text x="182" y="187">B♭3</text></g>
-                <g class="pak"><circle cx="120" cy="208" r="20"/><text x="120" y="213">A3</text></g>
-                <g class="pak"><circle cx="58" cy="182" r="20"/><text x="58" y="187">C4</text></g>
-                <g class="pak"><circle cx="32" cy="120" r="20"/><text x="32" y="125">E4</text></g>
-                <g class="pak"><circle cx="58" cy="58" r="20"/><text x="58" y="63">G4</text></g>
-                <g class="pak pak--ding"><circle cx="120" cy="120" r="25"/><text x="120" y="125">D3</text></g>
+                <g class="pak"><circle cx="120" cy="200" r="18"/><text x="120" y="204">A3</text></g>
+                <g class="pak akord-akt"><circle cx="59" cy="171" r="18"/><text x="59" y="175">B♭3</text></g>
+                <g class="pak"><circle cx="181" cy="171" r="18"/><text x="181" y="175">C4</text></g>
+                <g class="pak akord-akt"><circle cx="40" cy="127" r="18"/><text x="40" y="131">D4</text></g>
+                <g class="pak"><circle cx="200" cy="127" r="18"/><text x="200" y="131">E4</text></g>
+                <g class="pak akord-akt"><circle cx="52" cy="78" r="18"/><text x="52" y="82">F4</text></g>
+                <g class="pak"><circle cx="188" cy="78" r="18"/><text x="188" y="82">G4</text></g>
+                <g class="pak"><circle cx="90" cy="46" r="18"/><text x="90" y="50">A4</text></g>
+                <g class="pak"><circle cx="150" cy="46" r="18"/><text x="150" y="50">C5</text></g>
+                <g class="pak pak--ding"><circle cx="120" cy="120" r="24"/><text x="120" y="125">D3</text></g>
               </svg>
               <figcaption>
                 <span class="karta-akordu__nazwa">B♭-dur</span>
@@ -645,15 +653,16 @@
               <svg viewBox="0 0 240 240" role="img" aria-label="Akord a-moll na handpanie D-Kurd: pola A3, C4 i E4">
                 <circle cx="120" cy="120" r="115" fill="#1B2A47" stroke="#B9843F" stroke-width="4"/>
                 <circle cx="120" cy="120" r="99" fill="none" stroke="#C98F4A" stroke-opacity=".25" stroke-width="1.4"/>
-                <g class="pak"><circle cx="120" cy="32" r="20"/><text x="120" y="37">A4</text></g>
-                <g class="pak"><circle cx="182" cy="58" r="20"/><text x="182" y="63">F4</text></g>
-                <g class="pak"><circle cx="208" cy="120" r="20"/><text x="208" y="125">D4</text></g>
-                <g class="pak"><circle cx="182" cy="182" r="20"/><text x="182" y="187">B♭3</text></g>
-                <g class="pak akord-akt"><circle cx="120" cy="208" r="20"/><text x="120" y="213">A3</text></g>
-                <g class="pak akord-akt"><circle cx="58" cy="182" r="20"/><text x="58" y="187">C4</text></g>
-                <g class="pak akord-akt"><circle cx="32" cy="120" r="20"/><text x="32" y="125">E4</text></g>
-                <g class="pak"><circle cx="58" cy="58" r="20"/><text x="58" y="63">G4</text></g>
-                <g class="pak pak--ding"><circle cx="120" cy="120" r="25"/><text x="120" y="125">D3</text></g>
+                <g class="pak akord-akt"><circle cx="120" cy="200" r="18"/><text x="120" y="204">A3</text></g>
+                <g class="pak"><circle cx="59" cy="171" r="18"/><text x="59" y="175">B♭3</text></g>
+                <g class="pak akord-akt"><circle cx="181" cy="171" r="18"/><text x="181" y="175">C4</text></g>
+                <g class="pak"><circle cx="40" cy="127" r="18"/><text x="40" y="131">D4</text></g>
+                <g class="pak akord-akt"><circle cx="200" cy="127" r="18"/><text x="200" y="131">E4</text></g>
+                <g class="pak"><circle cx="52" cy="78" r="18"/><text x="52" y="82">F4</text></g>
+                <g class="pak"><circle cx="188" cy="78" r="18"/><text x="188" y="82">G4</text></g>
+                <g class="pak"><circle cx="90" cy="46" r="18"/><text x="90" y="50">A4</text></g>
+                <g class="pak"><circle cx="150" cy="46" r="18"/><text x="150" y="50">C5</text></g>
+                <g class="pak pak--ding"><circle cx="120" cy="120" r="24"/><text x="120" y="125">D3</text></g>
               </svg>
               <figcaption>
                 <span class="karta-akordu__nazwa">a-moll</span>
@@ -666,15 +675,16 @@
               <svg viewBox="0 0 240 240" role="img" aria-label="Akord E zmniejszony na handpanie D-Kurd: pola E4, G4 i B♭3">
                 <circle cx="120" cy="120" r="115" fill="#1B2A47" stroke="#B9843F" stroke-width="4"/>
                 <circle cx="120" cy="120" r="99" fill="none" stroke="#C98F4A" stroke-opacity=".25" stroke-width="1.4"/>
-                <g class="pak"><circle cx="120" cy="32" r="20"/><text x="120" y="37">A4</text></g>
-                <g class="pak"><circle cx="182" cy="58" r="20"/><text x="182" y="63">F4</text></g>
-                <g class="pak"><circle cx="208" cy="120" r="20"/><text x="208" y="125">D4</text></g>
-                <g class="pak akord-akt"><circle cx="182" cy="182" r="20"/><text x="182" y="187">B♭3</text></g>
-                <g class="pak"><circle cx="120" cy="208" r="20"/><text x="120" y="213">A3</text></g>
-                <g class="pak"><circle cx="58" cy="182" r="20"/><text x="58" y="187">C4</text></g>
-                <g class="pak akord-akt"><circle cx="32" cy="120" r="20"/><text x="32" y="125">E4</text></g>
-                <g class="pak akord-akt"><circle cx="58" cy="58" r="20"/><text x="58" y="63">G4</text></g>
-                <g class="pak pak--ding"><circle cx="120" cy="120" r="25"/><text x="120" y="125">D3</text></g>
+                <g class="pak"><circle cx="120" cy="200" r="18"/><text x="120" y="204">A3</text></g>
+                <g class="pak akord-akt"><circle cx="59" cy="171" r="18"/><text x="59" y="175">B♭3</text></g>
+                <g class="pak"><circle cx="181" cy="171" r="18"/><text x="181" y="175">C4</text></g>
+                <g class="pak"><circle cx="40" cy="127" r="18"/><text x="40" y="131">D4</text></g>
+                <g class="pak akord-akt"><circle cx="200" cy="127" r="18"/><text x="200" y="131">E4</text></g>
+                <g class="pak"><circle cx="52" cy="78" r="18"/><text x="52" y="82">F4</text></g>
+                <g class="pak akord-akt"><circle cx="188" cy="78" r="18"/><text x="188" y="82">G4</text></g>
+                <g class="pak"><circle cx="90" cy="46" r="18"/><text x="90" y="50">A4</text></g>
+                <g class="pak"><circle cx="150" cy="46" r="18"/><text x="150" y="50">C5</text></g>
+                <g class="pak pak--ding"><circle cx="120" cy="120" r="24"/><text x="120" y="125">D3</text></g>
               </svg>
               <figcaption>
                 <span class="karta-akordu__nazwa">E-dim</span>
