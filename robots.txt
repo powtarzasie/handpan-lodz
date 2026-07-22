@@ -1,5 +1,5 @@
 User-agent: *
-Allow: /
-Disallow: /strefa-czlonkow/
+Allow: /handpan-lodz/
+Disallow: /handpan-lodz/strefa-czlonkow/
 
-Sitemap: https://handpanlodz.pl/sitemap.xml
+Sitemap: https://powtarzasie.github.io/handpan-lodz/sitemap.xml

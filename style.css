@@ -62,7 +62,7 @@ body{
   color:var(--tusz-txt);
   background-color:var(--papier);
   /* ziarno papieru akwarelowego */
-  background-image:url(/zasoby/ziarno-papieru.webp);
+  background-image:url(/handpan-lodz/zasoby/ziarno-papieru.webp);
   overflow-x:hidden;
 }
 img{max-width:100%;height:auto;display:block}

@@ -191,7 +191,7 @@
       const v = document.createElement('video');
       v.muted = true; v.loop = true; v.playsInline = true;
       v.setAttribute('muted', ''); v.setAttribute('aria-hidden', 'true');
-      v.src = '/zasoby/hero-fale-animacja.mp4';
+      v.src = '/handpan-lodz/zasoby/hero-fale-animacja.mp4';
       v.addEventListener('canplaythrough', () => {
         obrazHero.appendChild(v);
         v.play().catch(() => v.remove());
