@@ -423,7 +423,10 @@
       if (!id) return;
       const iframe = document.createElement('iframe');
       iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
-      iframe.title = 'Spotkanie 7 — jam session Handpan Łódź (YouTube)';
+      // tytuł bierzemy z aria-label przycisku (jedno źródło prawdy — przy podmianie filmu
+      // wystarczy zmienić HTML; bez tego tytuł iframe cicho zostawał przy poprzednim filmie)
+      iframe.title = (fasada.getAttribute('aria-label') || '').replace(/^Odtwórz film:\s*/, '')
+                     || 'Film ze spotkania Handpan Łódź (YouTube)';
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
       iframe.allowFullscreen = true;
       iframe.width = '1280'; iframe.height = '720';
